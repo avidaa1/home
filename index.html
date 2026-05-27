@@ -364,17 +364,17 @@ footer a:hover{color:#2dd4bf;}
 
 <script>
 var USER='avidaa1';
+var EXCLUDE=['home','avidaa1.github.io'];
 var INTERVAL=5*60*1000;
 var KNOWN={
-  'home':             {label:'Home',       cat:'Index',    col:'#e2e8f0', live:'https://avidaa1.github.io/',         order:1},
-  'hub':              {label:'AVIDAA HUB', cat:'Platform', col:'#2dd4bf', live:'https://avidaa1.github.io/hub/',      order:2},
-  'metaverse':        {label:'Metaverse',  cat:'Game',     col:'#f97316', live:'https://avidaa1.github.io/metaverse/',order:3},
-  'ancestry':         {label:'Ancestry',   cat:'App',      col:'#a78bfa', live:'https://avidaa1.github.io/ancestry/', order:4},
-  'suno':             {label:'Suno',       cat:'Music',    col:'#f472b6', live:'https://avidaa1.github.io/suno/',     order:5},
-  'terra':            {label:'Terra',      cat:'Library',  col:'#22c55e', live:'https://avidaa1.github.io/terra/',    order:6},
-  'entity':           {label:'Entity',     cat:'3D',       col:'#fbbf24', live:'https://avidaa1.github.io/entity/',   order:7},
-  'celery':           {label:'Celery',     cat:'Page',     col:'#38bdf8', live:'https://avidaa1.github.io/celery/',   order:8},
-  'bitcoin':          {label:'Bitcoin',    cat:'Finance',  col:'#f7931a', live:'https://avidaa1.github.io/bitcoin/',  order:9},
+  'hub':              {label:'Hub',        cat:'Platform', col:'#2dd4bf', live:'https://avidaa1.github.io/hub/',      order:1},
+  'metaverse':        {label:'Metaverse',  cat:'Game',     col:'#f97316', live:'https://avidaa1.github.io/metaverse/',order:2},
+  'ancestry':         {label:'Ancestry',   cat:'App',      col:'#a78bfa', live:'https://avidaa1.github.io/ancestry/', order:3},
+  'suno':             {label:'Suno',       cat:'Music',    col:'#f472b6', live:'https://avidaa1.github.io/suno/',     order:4},
+  'terra':            {label:'Terra',      cat:'Library',  col:'#22c55e', live:'https://avidaa1.github.io/terra/',    order:5},
+  'entity':           {label:'Entity',     cat:'3D',       col:'#fbbf24', live:'https://avidaa1.github.io/entity/',   order:6},
+  'celery':           {label:'Celery',     cat:'Page',     col:'#38bdf8', live:'https://avidaa1.github.io/celery/',   order:7},
+  'bitcoin':          {label:'Bitcoin',    cat:'Finance',  col:'#f7931a', live:'https://avidaa1.github.io/bitcoin/',  order:8},
 };
 var _cd=INTERVAL/1000, _t=null, _ct=null;
 
@@ -399,7 +399,7 @@ async function fetchRepos(manual){
 }
 
 function render(repos){
-  var list=repos.filter(function(r){return !r.fork;});
+  var list=repos.filter(function(r){return !r.fork && EXCLUDE.indexOf(r.name)===-1;});
   list.sort(function(a,b){
     var ao=(KNOWN[a.name]||{}).order||99,bo=(KNOWN[b.name]||{}).order||99;
     if(ao!==bo)return ao-bo;
